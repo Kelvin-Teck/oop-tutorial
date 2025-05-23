@@ -110,7 +110,7 @@ const eagle = new Bird("Eagle", "Feathers");
 
 eagle.fly();
 
-class User {
+class Userz {
   public name: string;
   public role: string;
   email: string;
@@ -133,8 +133,8 @@ class User {
   }
 }
 
-const john = new User("John Doe", "Guest", "john.doe@gmail.com");
-const Timmy =  new User("Timmy", 'Guest', 'timmy.timgmail.com')
+const john = new Userz("John Doe", "Guest", "john.doe@gmail.com");
+const Timmy =  new Userz("Timmy", 'Guest', 'timmy.timgmail.com')
 
-User.validateEmail(john.email);
-User.validateEmail(Timmy.email)
+Userz.validateEmail(john.email);
+Userz.validateEmail(Timmy.email)

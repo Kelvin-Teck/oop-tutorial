@@ -77,7 +77,7 @@ class Bird extends Animal {
 }
 const eagle = new Bird("Eagle", "Feathers");
 eagle.fly();
-class User {
+class Userz {
     constructor(name, role, email) {
         this.name = name;
         this.role = role;
@@ -95,7 +95,7 @@ class User {
         }
     }
 }
-const john = new User("John Doe", "Guest", "john.doe@gmail.com");
-const Timmy = new User("Timmy", 'Guest', 'timmy.timgmail.com');
-User.validateEmail(john.email);
-User.validateEmail(Timmy.email);
+const john = new Userz("John Doe", "Guest", "john.doe@gmail.com");
+const Timmy = new Userz("Timmy", 'Guest', 'timmy.timgmail.com');
+Userz.validateEmail(john.email);
+Userz.validateEmail(Timmy.email);
