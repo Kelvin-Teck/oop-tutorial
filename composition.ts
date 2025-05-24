@@ -57,40 +57,65 @@ class User {
 
 class Book {
   name: string;
-  isAvailable: boolean;
+  noInStock: number;
 
-  constructor(name: string, isAvailable: boolean) {
+  constructor(name: string, noInStock: number) {
     this.name = name;
-    this.isAvailable = isAvailable;
+    this.noInStock = noInStock;
+  }
+}
+
+class Member {
+  name: string;
+  borrowedBooks: Book[] = [];
+
+  constructor(name: string) {
+    this.name = name;
+  }
+
+  borrowBook(book: Book) {
+    if (!this.borrowedBooks.includes(book)) {
+      if (book.noInStock > 0) {
+        this.borrowedBooks.push(book);
+        book.noInStock--;
+      }
+
+      console.log(`${book.name} borrowed by ${this.name}`);
+    }
   }
 }
 
 class Libz {
-  books: Book[];
+  books: Book[] = [];
 
-  constructor(books: Book[]) {
-    this.books = books;
+  addBook(book: Book) {
+    this.books.push(book);
   }
 
-    borrow(name: string): string {
-        this.books.forEach((book: Book) => {
-            if (book.name == name) {
-                if (book.isAvailable) {
-                    return name;
-                }
-            }
-        })
-
-
-        console.log("Sorry not found")
-        return "";
-    }
+  showAvailableBooks() {
+    // this.books.forEach((book) => {
+    //   if (book.isAvailable) {
+    //     console.log(book);
+    //   }
+    // });
+  }
 }
 
-const book1 = new Book("To Kill a Mockingbird", true);
-const book2 = new Book("1984", true);
-const book3 = new Book("The Great Gatsby", true);
-const book4 = new Book("Moby Dick", true);
+const book1 = new Book("To Kill a Mockingbird", 5);
+const book2 = new Book("1984", 9);
+const book3 = new Book("The Great Gatsby", 6);
+const book4 = new Book("Moby Dick", 10);
 
-const lib2 = new Libz([book1, book2, book3, book4]);
-console.log(lib2);
+const lib2 = new Libz();
+lib2.addBook(book1);
+lib2.addBook(book2);
+// lib2.showAvailableBooks()
+
+const dayo = new Member("Dayo");
+dayo.borrowBook(book1);
+dayo.borrowBook(book1);
+
+const jane = new Member("Jane");
+jane.borrowBook(book1);
+
+// console.log(dayo.borrowedBooks);

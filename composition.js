@@ -40,30 +40,52 @@ class User {
     }
 }
 class Book {
-    constructor(name, isAvailable) {
+    constructor(name, noInStock) {
         this.name = name;
-        this.isAvailable = isAvailable;
+        this.noInStock = noInStock;
+    }
+}
+class Member {
+    constructor(name) {
+        this.borrowedBooks = [];
+        this.name = name;
+    }
+    borrowBook(book) {
+        if (!this.borrowedBooks.includes(book)) {
+            if (book.noInStock > 0) {
+                this.borrowedBooks.push(book);
+                book.noInStock--;
+            }
+            console.log(`${book.name} borrowed by ${this.name}`);
+        }
     }
 }
 class Libz {
-    constructor(books) {
-        this.books = books;
+    constructor() {
+        this.books = [];
     }
-    borrow(name) {
-        this.books.forEach((book) => {
-            if (book.name == name) {
-                if (book.isAvailable) {
-                    return name;
-                }
-            }
-        });
-        console.log("Sorry not found");
-        return "";
+    addBook(book) {
+        this.books.push(book);
+    }
+    showAvailableBooks() {
+        // this.books.forEach((book) => {
+        //   if (book.isAvailable) {
+        //     console.log(book);
+        //   }
+        // });
     }
 }
-const book1 = new Book("To Kill a Mockingbird", true);
-const book2 = new Book("1984", true);
-const book3 = new Book("The Great Gatsby", true);
-const book4 = new Book("Moby Dick", true);
-const lib2 = new Libz([book1, book2, book3, book4]);
-console.log(lib2);
+const book1 = new Book("To Kill a Mockingbird", 5);
+const book2 = new Book("1984", 9);
+const book3 = new Book("The Great Gatsby", 6);
+const book4 = new Book("Moby Dick", 10);
+const lib2 = new Libz();
+lib2.addBook(book1);
+lib2.addBook(book2);
+// lib2.showAvailableBooks()
+const dayo = new Member("Dayo");
+dayo.borrowBook(book1);
+dayo.borrowBook(book1);
+const jane = new Member("Jane");
+jane.borrowBook(book1);
+// console.log(dayo.borrowedBooks);
