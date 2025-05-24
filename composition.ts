@@ -83,6 +83,15 @@ class Member {
       console.log(`${book.name} borrowed by ${this.name}`);
     }
   }
+
+  returnBook(book: Book) {
+    const index = this.borrowedBooks.indexOf(book);
+
+    if (index != -1) {
+      this.borrowedBooks.splice(index, 1);
+      book.noInStock++;
+    }
+  }
 }
 
 class Libz {
@@ -119,3 +128,4 @@ const jane = new Member("Jane");
 jane.borrowBook(book1);
 
 // console.log(dayo.borrowedBooks);
+
