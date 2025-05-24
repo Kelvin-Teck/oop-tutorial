@@ -96,3 +96,19 @@ dayo.borrowBook(book1);
 const jane = new Member("Jane");
 jane.borrowBook(book1);
 // console.log(dayo.borrowedBooks);
+class Heart {
+    beat() {
+        console.log("Heart is beating");
+    }
+}
+class Human {
+    constructor() {
+        this.heart = new Heart();
+    }
+    live() {
+        console.log("I am alive");
+        this.heart.beat();
+    }
+}
+const person = new Human();
+person.live();
